@@ -39,6 +39,7 @@ class UsersListResource(Resource):
 
     def post(self):
         args = parser.parse_args()
+        print(args, '!!!!!!!!!!!!!!')
         session = db_session.create_session()
         users = User(
             username=args['username'],

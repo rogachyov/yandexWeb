@@ -6,8 +6,15 @@ from requests import get, delete, post
 pprint.pprint(get("http://127.0.0.1:5000/api/v2/users").json())
 pprint.pprint(get("http://127.0.0.1:5000/api/v2/users/1").json())
 
-pprint.pprint(post("http://127.0.0.1:5000/api/v2/users", json.dumps({"username": 'semen', 'email': 'semen11@gmail.com', 'password': 'asfdusfgilh'})).json())
+pprint.pprint(post("http://127.0.0.1:5000/api/v2/users").json())
 pprint.pprint(delete("http://127.0.0.1:5000/api/v2/users/1").json())
+
+print()
+
+pprint.pprint(get("http://127.0.0.1:5000/api/v2/cities").json())
+pprint.pprint(get("http://127.0.0.1:5000/api/v2/cities/1").json())
+
+pprint.pprint(delete("http://127.0.0.1:5000/api/v2/cities/1").json())
 
 
 
