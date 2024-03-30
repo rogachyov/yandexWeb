@@ -1,28 +1,25 @@
-from flask import Flask
-from flask_restful import reqparse, abort, Api, Resource
+import json
+import pprint
+import json
+from requests import get, delete, post
 
-from data import db_session, news_resources, users_resources, jobs_resource
-from data.users import User
+pprint.pprint(get("http://127.0.0.1:5000/api/v2/users").json())
+pprint.pprint(get("http://127.0.0.1:5000/api/v2/users/1").json())
 
-
-app = Flask(__name__)
-api = Api(app)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-
-
-def main():
-    db_session.global_init("db/blogs.db")
-    # для списка объектов
-    api.add_resource(news_resources.NewsListResource, '/api/v2/news')
-    api.add_resource(users_resources.UsersListResource, '/api/v2/users')
-    api.add_resource(jobs_resource.JobsListResource, '/api/v2/jobs')
-
-    # для одного объекта
-    api.add_resource(news_resources.NewsResource, '/api/v2/news/<int:news_id>')
-    api.add_resource(users_resources.UsersResource, '/api/v2/users/<int:user_id>')
-    api.add_resource(jobs_resource.JobsResource, '/api/v2/jobs/<int:jobs_id>')
-    app.run()
+pprint.pprint(post("http://127.0.0.1:5000/api/v2/users", json.dumps({"username": 'semen', 'email': 'semen11@gmail.com', 'password': 'asfdusfgilh'})).json())
+pprint.pprint(delete("http://127.0.0.1:5000/api/v2/users/1").json())
 
 
-if __name__ == '__main__':
-    main()
+
+# pprint.pprint(get('http://localhost:5000/api/v2/jobs').json())
+#
+# pprint.pprint(post('http://localhost:5000/api/v2/jobs', {'team_leader': 1, 'job': 'am', 'work_size': 15,
+#                                                           'collaborators': '2, 3'}).json())
+# pprint.pprint(post('http://localhost:5000/api/v2/jobs', {'team_leader': 1000, 'job': 'am', 'work_size': 15,
+#                                                           'collaborators': '2, 3'}).json())
+#
+# pprint.pprint(get('http://localhost:5000/api/v2/jobs/1').json())
+# pprint.pprint(get('http://localhost:5000/api/v2/jobs/1000').json())
+#
+# pprint.pprint(delete('http://localhost:5000/api/v2/jobs/1').json())
+# pprint.pprint(delete('http://localhost:5000/api/v2/jobs/1000').json())

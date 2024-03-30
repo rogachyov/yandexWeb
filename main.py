@@ -1,9 +1,11 @@
 from flask import Flask, render_template, redirect
+from flask_restful import Api
 
-from data import db_session
+from data import db_session, users_resources
 from data.users import User
 
 app = Flask(__name__)
+api = Api(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
@@ -43,6 +45,21 @@ def index():
 
 def main():
     db_session.global_init("db/weather.db")
+
+    db_sess = db_session.create_session()
+
+    # user = User()
+    # user.username = "semen"
+    # user.email = 'semen@gmail.com'
+    # user.password = User.set_password(user, password="hdgfvjfsh")
+    #
+    # db_sess.add(user)
+    # db_sess.commit()
+
+    api.add_resource(users_resources.UsersListResource, '/api/v2/users')
+
+    api.add_resource(users_resources.UsersResource, '/api/v2/users/<int:id>')
+
     app.run()
 
 
