@@ -6,7 +6,7 @@ from data.cities import City
 from data.reqparse import parser
 
 
-def abort_if_news_not_found(city_id):
+def abort_if_city_not_found(city_id):
     session = db_session.create_session()
     news = session.query(City).get(city_id)
     if not news:
@@ -15,18 +15,28 @@ def abort_if_news_not_found(city_id):
 
 class CitiesResource(Resource):
     def get(self, id):
-        abort_if_news_not_found(id)
+        abort_if_city_not_found(id)
         session = db_session.create_session()
         cities = session.query(City).get(id)
         return jsonify({'id': cities.id, 'city': cities.city})
 
     def delete(self, id):
-        abort_if_news_not_found(id)
+        abort_if_city_not_found(id)
         session = db_session.create_session()
         cities = session.query(City).get(id)
         session.delete(cities)
         session.commit()
         return jsonify({'success': 'OK'})
+
+    def put(self, id):
+        abort_if_city_not_found(id)
+        session = db_session.create_session()
+        city = session.query(City).get(id)
+        args = parser.parse_args()
+        if args['city']:
+            city.city = args['city']
+        session.commit()
+        return jsonify({'id': city.id, 'city': city.city})
 
 
 class CitiesListResource(Resource):
