@@ -15,9 +15,9 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
                            primary_key=True, autoincrement=True)
     username = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String,
-                              index=False, unique=True, nullable=True)
+                              unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    city_id = sqlalchemy.Column(sqlalchemy.Integer)
+    city_id = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     # cities = orm.relationship("Cities", back_populates='user')
 
     def __repr__(self):

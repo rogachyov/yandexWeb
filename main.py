@@ -49,19 +49,19 @@ def main():
 
     db_sess = db_session.create_session()
 
-    user = User()
-    user.username = "semen"
-    user.email = 'semen@gmail.com'
-    user.password = User.set_password(user, password="hdgfvjfsh")
-
-    db_sess.add(user)
-    db_sess.commit()
-
-    city = City()
-    city.city = 'Omsk'
-
-    db_sess.add(city)
-    db_sess.commit()
+    # city = City()
+    # city.city = 'Omsk'
+    #
+    # db_sess.add(city)
+    # db_sess.commit()
+    #
+    # user = User()
+    # user.username = "semen"
+    # user.email = 'semen@gmail.com'
+    # user.set_password(password="hdgfvjfsh")
+    #
+    # db_sess.add(user)
+    # db_sess.commit()
 
     api.add_resource(users_resources.UsersListResource, '/api/v2/users')
     api.add_resource(cities_resources.CitiesListResource, '/api/v2/cities')

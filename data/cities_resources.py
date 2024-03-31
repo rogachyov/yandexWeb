@@ -39,10 +39,8 @@ class CitiesListResource(Resource):
         args = parser.parse_args()
         session = db_session.create_session()
         cities = City(
-            username=args['username'],
-            email=args['email']
+            city=args['city']
         )
-        cities.set_password(args['password'])
         session.add(cities)
         session.commit()
         return jsonify({'id': cities.id})
