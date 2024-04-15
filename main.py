@@ -21,8 +21,9 @@ login_manager.init_app(app)
 
 @app.route("/")
 def index():
-
+    wether = call(52.52, 13.41)
     return 'Hello World!'
+    # return render_template('index.html', wether=wether)
 
 
 @app.route('/register', methods=['GET', 'POST'])
