@@ -4,14 +4,16 @@ from wtforms.validators import DataRequired
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
-    confirm_password = PasswordField('confirm_password', validators=[DataRequired()])
+    username = StringField('Имя пользователя', validators=[DataRequired()],
+                           render_kw={"class": "user_name_form"})
+    email = StringField(' Email', validators=[DataRequired()], render_kw={"class": "email_form"})
+    password = PasswordField('Пароль', validators=[DataRequired()], render_kw={"class": "form-password_form"})
+    confirm_password = PasswordField('Подтверждение пароля', validators=[DataRequired()],
+                                     render_kw={"class": "confirm_password_form"})
     # list = FieldList('city', validators=[DataRequired()])
     # city = StringField('city', validators=[DataRequired()])
 
-    submit = SubmitField('Зарегистрироватся')
+    submit = SubmitField('Зарегистрироватся', render_kw={"class": "confirm_btn"})
 
 
 class LoginForm(FlaskForm):

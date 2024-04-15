@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for
 from flask_restful import Api
 
 from flask_login import LoginManager, login_manager, login_user, login_required, logout_user, current_user
