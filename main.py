@@ -8,7 +8,7 @@ from data import db_session, users_resources, cities_resources
 from data.users import User
 from data.cities import City
 
-from forms.user import RegisterForm, LoginForm
+from forms.user import RegisterForm, LoginForm, EditForm
 
 from wether_api import call
 

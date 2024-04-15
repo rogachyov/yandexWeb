@@ -7,7 +7,8 @@ class RegisterForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
-    list = FieldList('city', validators=[DataRequired()])
+    confirm_password = PasswordField('confirm_password', validators=[DataRequired()])
+    # list = FieldList('city', validators=[DataRequired()])
     # city = StringField('city', validators=[DataRequired()])
 
     submit = SubmitField('Зарегистрироватся')
@@ -18,3 +19,8 @@ class LoginForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()])
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
+
+
+class EditForm(FlaskForm):
+    username = StringField('username')
+    password = PasswordField('password')
