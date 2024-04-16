@@ -30,7 +30,7 @@ def index():
 def reqister():
     print('a')
     form = RegisterForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit() and form.password.data == form.confirm_password.data:
         print('b')
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
@@ -47,6 +47,9 @@ def reqister():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
+    if form.password.data != form.confirm_password.data:
+        return render_template('register.html', title='Регистрация',
+                               form=form, message='Пароли не соответствуют')
     return render_template('register.html', title='Регистрация', form=form)
 
 

@@ -1,9 +1,24 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="ru">
 
-{% block content %}
-    <h1>Авторизация</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/register.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Авторизация</title>
+
+</head>
+<body>
     <form action="" method="post">
         {{ form.hidden_tag() }}
+        <div class="wrapper">
+        <div class="container">
+            <h1>Авторизация</h1>
+            <div class="forms_container">
         <p>
             {{ form.email.label }}<br>
             {{ form.email(class="form-control", type="email") }}<br>
@@ -22,8 +37,13 @@
                 </div>
             {% endfor %}
         </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-        <div>{{ message }}</div>
+        </div>
+            <p>
+                {{ form.submit(type="submit") }}
+            </p>
+            <div>{{ message }}</div>
+        </div>
+    </div>
     </form>
-{% endblock %}
+</body>
+</html>
