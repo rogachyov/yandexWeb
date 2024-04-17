@@ -9,6 +9,8 @@ class City(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, autoincrement=True, nullable=False, primary_key=True)
     city = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
+    lat = sqlalchemy.Column(sqlalchemy.FLOAT, nullable=True)
+    lng = sqlalchemy.Column(sqlalchemy.FLOAT, nullable=True)
     # user = orm.relationship('User')
 
     def __repr__(self):
