@@ -10,7 +10,7 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()], render_kw={"class": "form-password_form"})
     confirm_password = PasswordField('Подтверждение пароля', validators=[DataRequired()],
                                      render_kw={"class": "confirm_password_form"})
-    list = FieldList('city', validators=[DataRequired()])
+    # list = FieldList('city', validators=[DataRequired()])
 
     submit = SubmitField('Зарегистрироватся', render_kw={"class": "confirm_btn"})
 

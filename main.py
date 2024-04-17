@@ -1,3 +1,5 @@
+import csv
+
 from flask import Flask, render_template, redirect, url_for
 from flask_restful import Api
 
@@ -71,7 +73,16 @@ def login():
 def main():
     db_session.global_init("db/weather.db")
 
-    db_sess = db_session.create_session()
+    # db_sess = db_session.create_session()
+    #
+    # with open('db/worldcities_our.csv', 'r', encoding='utf-8') as csvfile:
+    #     reader = csv.reader(csvfile, delimiter=',')
+    #     next(reader)
+    #     for row in reader:
+    #         city = City()
+    #         city.city, city.lat, city.lng = row
+    #         db_sess.add(city)
+    #     db_sess.commit()
 
     api.add_resource(users_resources.UsersListResource, '/api/v2/users')
 
