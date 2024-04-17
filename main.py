@@ -12,6 +12,9 @@ from forms.user import RegisterForm, LoginForm
 
 from wether_api import call
 
+from datetime import datetime
+
+
 app = Flask(__name__)
 api = Api(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -24,9 +27,10 @@ login_manager.init_app(app)
 def index():
     if not current_user.is_authenticated:
         return redirect('/register')
-
-    wether = call(52.52, 13.41)
-    return 'Hello World!'
+    db_sess = db_session.create_session()
+    city = db_sess.query(City).filter(City.id == current_user.city_id).first()
+    wether = call(city.lat, city.lng)
+    return {city.city, wether}
     # return render_template('index.html', wether=wether)
 
 
@@ -45,6 +49,7 @@ def reqister():
         user = User(
             username=form.username.data,
             email=form.email.data,
+            city_id=form.city.data
         )
         print('d')
         user.set_password(form.password.data)

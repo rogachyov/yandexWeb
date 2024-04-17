@@ -19,6 +19,7 @@ class RegisterForm(FlaskForm):
     cur = con.cursor()
     result = cur.execute("""SELECT * FROM cities""").fetchall()
     list = SelectField('Город', validators=[DataRequired()], choices=[(city[0], city[1]) for city in result])
+    con.close()
 
     submit = SubmitField('Зарегистрироватся', render_kw={"class": "confirm_btn"})
 
