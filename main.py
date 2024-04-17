@@ -29,9 +29,15 @@ def index():
         return redirect('/register')
     db_sess = db_session.create_session()
     city = db_sess.query(City).filter(City.id == current_user.city_id).first()
-    wether = call(city.lat, city.lng)
-    return {city.city, wether}
-    # return render_template('index.html', wether=wether)
+    all_weather = call(city.lat, city.lng)
+    print(all_weather)
+    time = datetime.now().time().hour
+    weather = {'temperature_2m': float(all_weather['temperature_2m'][time]),
+              'precipitation': float(all_weather['precipitation'][time]),
+              'wind_speed_10m': float(all_weather['wind_speed_10m'][time]),
+              'wind_direction_10m': float(all_weather['wind_direction_10m'][time])}
+    return weather
+    # return render_template('index.html', weather=weather)
 
 
 @app.route('/register', methods=['GET', 'POST'])
