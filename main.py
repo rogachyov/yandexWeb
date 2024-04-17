@@ -1,6 +1,4 @@
-import csv
-
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect
 from flask_restful import Api
 
 from flask_login import LoginManager, login_manager, login_user, login_required, logout_user, current_user
@@ -10,19 +8,23 @@ from data import db_session, users_resources
 from data.users import User
 from data.cities import City
 
-from forms.user import RegisterForm, LoginForm, EditForm
+from forms.user import RegisterForm, LoginForm
 
 from wether_api import call
 
 app = Flask(__name__)
 api = Api(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 
 @app.route("/")
 def index():
+    if not current_user.is_authenticated:
+        return redirect('/register')
+
     wether = call(52.52, 13.41)
     return 'Hello World!'
     # return render_template('index.html', wether=wether)
