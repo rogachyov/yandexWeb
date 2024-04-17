@@ -12,7 +12,6 @@ h1 {
 
 .wrapper {
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	margin-top: 50px;
 }
@@ -21,10 +20,10 @@ h1 {
 	background: #21273D;
 	display: block;
 	color: #fff;
-	padding: 20px 20px 40px 20px;
+	padding: 20px 20px 20px 20px;
 	border-radius: 55px;
 	text-align: center;
-	width: 30%;
+	width: 400px;
 }
 
 .forms_container label {
@@ -38,8 +37,8 @@ h1 {
 
 .forms_container input {
 	width: 90%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	border-radius: 10px;
 }
 
@@ -48,8 +47,8 @@ h1 {
 	font-size: 20px;
 	background: #A3CEF1;
 	width: 90%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	border-radius: 10px;
 	color: #F1F6F8;
 	font-family: "Ubuntu", sans-serif;
@@ -57,3 +56,4 @@ h1 {
 	font-style: normal;
 	margin-top: 20px;
 }
+

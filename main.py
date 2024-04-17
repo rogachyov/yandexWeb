@@ -15,6 +15,8 @@ from wether_api import call
 from datetime import datetime
 
 
+
+
 app = Flask(__name__)
 api = Api(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -101,7 +103,7 @@ def main():
 
     api.add_resource(users_resources.UsersResource, '/api/v2/users/<int:id>')
 
-    app.run()
+    app.run(port='8080')
 
 
 @login_manager.user_loader
