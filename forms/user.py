@@ -1,6 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, EmailField, SubmitField, BooleanField, FieldList
+from wtforms import PasswordField, StringField, EmailField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired
+
+from data import db_session
+from data.cities import City
 
 
 class RegisterForm(FlaskForm):
@@ -10,7 +13,9 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()], render_kw={"class": "form-password_form"})
     confirm_password = PasswordField('Подтверждение пароля', validators=[DataRequired()],
                                      render_kw={"class": "confirm_password_form"})
-    # list = FieldList('city', validators=[DataRequired()])
+    session = db_session.create_session()
+    cities = session.query(City).all()
+    list = SelectField('Город', validators=[DataRequired()], choices=[(city.id, city.city) for city in cities])
 
     submit = SubmitField('Зарегистрироватся', render_kw={"class": "confirm_btn"})
 
