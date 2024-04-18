@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>температура: {{ weather['temperature_2m'] }}°C</h1>
+    <h1>какая-то штука: {{weather['weather_code'] }}</h1>
+    <h1>какая-то штука: {{ weather['wind_speed_10m'] }}</h1>
+    <h1>какая-то штука: {{ weather['wind_direction_10m'] }}</h1>
 {% endblock %}

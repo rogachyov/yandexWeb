@@ -14,7 +14,7 @@ class RegisterForm(FlaskForm):
     email = StringField(' Email', validators=[DataRequired()], render_kw={"class": "email_form"})
     password = PasswordField('Пароль', validators=[DataRequired()], render_kw={"class": "form-password_form"})
     confirm_password = PasswordField('Подтверждение пароля', validators=[DataRequired()],
-                                     render_kw={"class": "confirm_password_form"})
+                                     render_kw={"class": "form-password_form"})
     con = sqlite3.connect("db/weather.db")
     cur = con.cursor()
     result = cur.execute("""SELECT * FROM cities""").fetchall()

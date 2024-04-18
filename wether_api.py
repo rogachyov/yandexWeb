@@ -17,8 +17,9 @@ def call(latitude, longitude):
     params = {
         "latitude": latitude,
         "longitude": longitude,
-        "hourly": ["temperature_2m", "precipitation", "wind_speed_10m", "wind_direction_10m"],
-        "forecast_days": 1
+        "hourly": ["temperature_2m", "weather_code", "wind_speed_10m", "wind_direction_10m"],
+        "forecast_days": 1,
+        "wind_speed_unit": "ms"
     }
     responses = openmeteo.weather_api(url, params=params)
 
@@ -43,7 +44,7 @@ def call(latitude, longitude):
         inclusive = "left"
     )}
     hourly_data["temperature_2m"] = hourly_temperature_2m
-    hourly_data["precipitation"] = hourly_precipitation
+    hourly_data["weather_code"] = hourly_precipitation
     hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
     hourly_data["wind_direction_10m"] = hourly_wind_direction_10m
 

@@ -49,7 +49,7 @@
                 </p>
                 <p>
                     {{ form.confirm_password.label }}
-                    {{ form.confirm_password(class="form-control", type="confirm_password") }}
+                    {{ form.confirm_password(class="form-control", type="password") }}
                     {% for error in form.confirm_password.errors %}
                     <div class="alert-danger" role="alert">
                         {{ error }}
