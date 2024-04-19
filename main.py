@@ -28,7 +28,7 @@ login_manager.init_app(app)
 @app.route("/")
 def index():
     if not current_user.is_authenticated:
-        return redirect('/register')
+        return redirect('/login')
     db_sess = db_session.create_session()
     city = db_sess.query(City).filter(City.id == current_user.city_id).first()
     all_weather = call(city.lat, city.lng)
@@ -119,16 +119,16 @@ def settings():
 def main():
     db_session.global_init("db/weather.db")
 
-    # db_sess = db_session.create_session()
-    #
-    # with open('db/worldcities_our.csv', 'r', encoding='utf-8') as csvfile:
-    #     reader = csv.reader(csvfile, delimiter=',')
-    #     next(reader)
-    #     for row in reader:
-    #         city = City()
-    #         city.city, city.lat, city.lng = row
-    #         db_sess.add(city)
-    #     db_sess.commit()
+    db_sess = db_session.create_session()
+
+    with open('db/worldcities_our.csv', 'r', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        next(reader)
+        for row in reader:
+            city = City()
+            city.city, city.lat, city.lng = row
+            db_sess.add(city)
+        db_sess.commit()
 
     api.add_resource(users_resources.UsersListResource, '/api/v2/users')
 
