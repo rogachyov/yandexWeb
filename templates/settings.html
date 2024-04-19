@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    <title>Регистрация</title>
+    <title>Настройки</title>
 
 </head>
 <body>
@@ -18,26 +18,8 @@
     <!-- Begin page content -->
     <div class="wrapper">
         <div class="container">
-            <h1>Регистрация</h1>
+            <h1>Настройки</h1>
             <div class="forms_container">
-                <p>
-                    {{ form.username.label }}
-                    {{ form.username(class="form-control", type="username") }}
-                    {% for error in form.username.errors %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </div>
-                    {% endfor %}
-                </p>
-                <p>
-                    {{ form.email.label }}
-                    {{ form.email(class="form-control", type="email") }}
-                    {% for error in form.email.errors %}
-                    <div class="alert-danger" role="alert">
-                        {{ error }}
-                    </div>
-                    {% endfor %}
-                </p>
                 <p>
                     {{ form.password.label }}
                     {{ form.password(class="form-control", type="password") }}
@@ -48,9 +30,9 @@
                     {% endfor %}
                 </p>
                 <p>
-                    {{ form.confirm_password.label }}
-                    {{ form.confirm_password(class="form-control", type="password") }}
-                    {% for error in form.confirm_password.errors %}
+                    {{ form.password_new.label }}
+                    {{ form.password_new(class="form-control", type="password") }}
+                    {% for error in form.password_new.errors %}
                     <div class="alert-danger" role="alert">
                         {{ error }}
                     </div>
@@ -60,13 +42,13 @@
                     {{ form.list.label }}
                     {{ form.list(class="city_list") }}
                 </p>
-            <a href="/login" class="logout_btn">Войти</a>
-
             </div>
             <p>
                 {{ form.submit(type="submit") }}
             </p>
             <div>{{ message }}</div>
+            <a href="/" class="logout_btn">На главную</a>
+
         </div>
     </div>
     </form>

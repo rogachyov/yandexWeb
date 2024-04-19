@@ -43,6 +43,20 @@ h1 {
 	border-radius: 10px;
 }
 
+.logout_btn {
+	font-size: 20px;
+	background: #ff0000;
+	width: 90%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 10px;
+	color: #F1F6F8;
+	font-family: "Ubuntu", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	margin-top: 20px;
+}
+
 
 .confirm_btn {
 	font-size: 20px;

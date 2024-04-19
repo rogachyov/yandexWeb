@@ -29,3 +29,14 @@ class LoginForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()])
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('Войти', render_kw={"class": "confirm_btn"})
+
+
+class SettingsForm(FlaskForm):
+    password = PasswordField('Прошлый пароль', validators=[DataRequired()])
+    password_new = PasswordField('Новый пароль', validators=[DataRequired()])
+    con = sqlite3.connect("db/weather.db")
+    cur = con.cursor()
+    result = cur.execute("""SELECT * FROM cities""").fetchall()
+    list = SelectField('Город', validators=[DataRequired()], choices=[(city[0], city[1]) for city in result])
+    con.close()
+    submit = SubmitField('Запомнить изменения', render_kw={"class": "confirm_btn"})

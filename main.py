@@ -10,7 +10,7 @@ from data import db_session, users_resources
 from data.users import User
 from data.cities import City
 
-from forms.user import RegisterForm, LoginForm
+from forms.user import RegisterForm, LoginForm, SettingsForm
 
 from wether_api import call
 
@@ -31,11 +31,8 @@ def index():
         return redirect('/register')
     db_sess = db_session.create_session()
     city = db_sess.query(City).filter(City.id == current_user.city_id).first()
-    print(city)
     all_weather = call(city.lat, city.lng)
-    print(all_weather)
     time_UTC = datetime.utcnow().time().hour
-    print(time_UTC)
     direction = float(all_weather['wind_direction_10m'][time_UTC])
     if 337.5 <= direction <= 380 or 0 <= direction <= 22.5:
         direction = 'С'
@@ -65,13 +62,10 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
-    print('a')
     form = RegisterForm()
     if form.validate_on_submit() and form.password.data == form.confirm_password.data:
-        print('b')
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
-            print('c')
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
@@ -80,7 +74,6 @@ def reqister():
             email=form.email.data,
             city_id=form.list.data
         )
-        print('d')
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
@@ -106,19 +99,36 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    form = SettingsForm()
+    if not current_user.is_authenticated:
+        return redirect('/register')
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
+        if user and user.check_password(form.password.data):
+            user.set_password(form.password_new.data)
+            user.city_id = form.list.data
+            db_sess.commit()
+            return redirect('/')
+    return render_template('settings.html', form=form)
+
+
 def main():
     db_session.global_init("db/weather.db")
 
-    db_sess = db_session.create_session()
-
-    with open('db/worldcities_our.csv', 'r', encoding='utf-8') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',')
-        next(reader)
-        for row in reader:
-            city = City()
-            city.city, city.lat, city.lng = row
-            db_sess.add(city)
-        db_sess.commit()
+    # db_sess = db_session.create_session()
+    #
+    # with open('db/worldcities_our.csv', 'r', encoding='utf-8') as csvfile:
+    #     reader = csv.reader(csvfile, delimiter=',')
+    #     next(reader)
+    #     for row in reader:
+    #         city = City()
+    #         city.city, city.lat, city.lng = row
+    #         db_sess.add(city)
+    #     db_sess.commit()
 
     api.add_resource(users_resources.UsersListResource, '/api/v2/users')
 
