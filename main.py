@@ -60,7 +60,7 @@ def index():
                'wind_speed_10m': str(round(float(all_weather['wind_speed_10m'][time_UTC]), 2)) + 'м/с',
                'wind_direction_10m': direction}
     # return weather
-    return render_template('index.html', weather=weather)
+    return render_template('index.html', weather=weather, city=city.city)
 
 
 @app.route('/register', methods=['GET', 'POST'])
