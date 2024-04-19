@@ -2,16 +2,85 @@ body {
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 700;
 	font-style: normal;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
 
 header {
+	display: flex;
 	background: #B9D4F1;
-	height: 58px;
+	height: 60px;
+}
+
+.city {
+	margin-top: 0px;
+	margin-left: 215px;
+	padding-top: 20px;
+	font-size: 18px;
+	color: #000;
+}
+
+
+.logout_btn {
+	text-align: right;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #21273D;
+	text-decoration: none;
+	margin-left: 40%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	color: #F1F6F8;
+}
+
+.wrapper {
+	display: flex;
 }
 
 .weather_block {
 	background: #F1F6F8;
 }
+
+.weather_pic {
+	margin-left: 215px;
+}
+
+.weather_info {
+	color: #21273D;
+	margin-left: 30px;
+}
+
+.temperature {
+	font-size: 150px;
+	margin-bottom: 0;
+	margin-top: 50px;
+}
+
+.wind_speed {
+	font-size: 70px;
+	margin-bottom: 0;
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+footer {
+	background: #6A759B;
+	padding-top: 66px;
+	padding-bottom: 66px;
+}
+
+.footer_container {
+	color: #F1F6F8;
+	margin-left: 215px;
+	margin-right: 215px;
+	font-size: 25px;
+}
+
+
+
 
 img {
 	height: 500px;

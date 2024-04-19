@@ -12,12 +12,12 @@
 <body>
     {% block content %}
         <header>
+            <h4 class="city">{{ city }}</h4>
             <a href="/logout" class="logout_btn">Выйти из аккаунта</a>
         </header>
         <div class="weather_block">
             <div class="wrapper">
-                <div class="container">
-                    <h1>{{ city }}</h1>>
+                <div class="picture_container">
                     {% if 0 <= weather['weather_code'] <= 4 %}
                         <img src="{{url_for('static', filename='images/weather_pack/cloudy-forecast-sun-svgrepo-com.svg')}}" alt="" class="weather_pic">
                     {% elif 5 <= weather['weather_code'] <= 12 or 18 <= weather['weather_code'] <= 19 or 30 <= weather['weather_code'] <= 35 or 40 <= weather['weather_code'] <= 49 %}
@@ -41,15 +41,16 @@
                     {% elif 80 <= weather['weather_code'] <= 99 %}
                         <img src="{{url_for('static', filename='images/weather_pack/climate-cloud-forecast-2-svgrepo-com.svg')}}" alt="" class="weather_pic">
                     {% endif %}
-                    <h1>{{ weather['temperature_2m'] }}°C</h1>
-                    <h3>{{ weather['wind_speed_10m'] }}</h3>
-                    <h3>{{ weather['wind_direction_10m'] }}</h3>
+                </div>
+                <div class="weather_info">
+                    <h1 class="temperature">{{ weather['temperature_2m'] }}°C</h1>
+                    <h2 class="wind_speed">{{ weather['wind_speed_10m'] }} {{ weather['wind_direction_10m'] }}</h2>
                 </div>
             </div>
         </div>
         <footer>
             <div class="wrapper">
-                <div class="container">
+                <div class="footer_container">
                 {% if 0 <= weather['weather_code'] <= 4 %}
                     <p>
                         Сегодня отличная погода. Советую надеть футболку,
