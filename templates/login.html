@@ -31,7 +31,7 @@
                         {{ form.password.label }}
                         {{ form.password(class="form-control", type="password") }}
                         {% for error in form.password.errors %}
-                            <div class="alert-danger" role="alert" style="color:red;">
+                            <div class="alert-danger" role="alert">
                                 {{ error }}
                             </div>
                         {% endfor %}

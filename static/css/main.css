@@ -1,0 +1,19 @@
+body {
+	font-family: "Ubuntu", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+header {
+	background: #B9D4F1;
+	height: 58px;
+}
+
+.weather_block {
+	background: #F1F6F8;
+}
+
+img {
+	height: 500px;
+	width: 500px;
+}

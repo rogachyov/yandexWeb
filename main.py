@@ -31,6 +31,7 @@ def index():
         return redirect('/register')
     db_sess = db_session.create_session()
     city = db_sess.query(City).filter(City.id == current_user.city_id).first()
+    print(city)
     all_weather = call(city.lat, city.lng)
     print(all_weather)
     time_UTC = datetime.utcnow().time().hour

@@ -1,8 +1,124 @@
-{% extends "base.html" %}
-
-{% block content %}
-    <h1>температура: {{ weather['temperature_2m'] }}°C</h1>
-    <h1>какая-то штука: {{weather['weather_code'] }}</h1>
-    <h1>какая-то штука: {{ weather['wind_speed_10m'] }}</h1>
-    <h1>какая-то штука: {{ weather['wind_direction_10m'] }}</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Погода</title>
+</head>
+<body>
+    {% block content %}
+        <header>
+            <a href="/logout" class="logout_btn">Выйти из аккаунта</a>
+        </header>
+        <div class="weather_block">
+            <div class="wrapper">
+                <div class="container">
+                    {% if 0 <= weather['weather_code'] <= 4 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/cloudy-forecast-sun-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 5 <= weather['weather_code'] <= 12 or 18 <= weather['weather_code'] <= 19 or 30 <= weather['weather_code'] <= 35 or 40 <= weather['weather_code'] <= 49 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-forecast-hurricane-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif weather['weather_code'] == 13 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/energy-forecast-lightning-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 14 <= weather['weather_code'] <= 21 or 60 <= weather['weather_code'] <= 69 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-cloud-forecast-3-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif weather['weather_code'] == 22 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/forecast-snowflake-flakes-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 36 <= weather['weather_code'] <= 39 or 70 <= weather['weather_code'] <= 79 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-cloud-forecast-4-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 23 <= weather['weather_code'] <= 26 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-cloud-forecast-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 27 <= weather['weather_code'] <= 28 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-cloud-forecast-2-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif weather['weather_code'] == 29 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/cloud-forecast-lightning-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 50 <= weather['weather_code'] <= 59 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-forecast-rain-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% elif 80 <= weather['weather_code'] <= 99 %}
+                        <img src="{{url_for('static', filename='images/weather_pack/climate-cloud-forecast-2-svgrepo-com.svg')}}" alt="" class="weather_pic">
+                    {% endif %}
+                    <h1>{{ weather['temperature_2m'] }}°C</h1>
+                    <h3>{{ weather['wind_speed_10m'] }}</h3>
+                    <h3>{{ weather['wind_direction_10m'] }}</h3>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <div class="container">
+                {% if 0 <= weather['weather_code'] <= 4 %}
+                    <p>
+                        Сегодня отличная погода. Советую надеть футболку,
+                        шорты или штаны. Можно обуть кроссовки или кеды.
+                        Также можешь взять кепку или панамку.
+                    </p>
+                    {% elif 5 <= weather['weather_code'] <= 12 or 18 <= weather['weather_code'] <= 19 or 30 <= weather['weather_code'] <= 35 or 40 <= weather['weather_code'] <= 49 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif weather['weather_code'] == 13 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif 14 <= weather['weather_code'] <= 21 or 60 <= weather['weather_code'] <= 69 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif weather['weather_code'] == 22 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif 36 <= weather['weather_code'] <= 39 or 70 <= weather['weather_code'] <= 79 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif 23 <= weather['weather_code'] <= 26 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif 27 <= weather['weather_code'] <= 28 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif weather['weather_code'] == 29 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif 50 <= weather['weather_code'] <= 59 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% elif 80 <= weather['weather_code'] <= 99 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </footer>   
+    {% endblock %}
+</body>
+</html>
