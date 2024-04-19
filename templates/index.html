@@ -13,6 +13,7 @@
     {% block content %}
         <header>
             <h4 class="city">{{ city }}</h4>
+            <a href="/settings" class="settings_btn">Настройки</a>
             <a href="/logout" class="logout_btn">Выйти из аккаунта</a>
         </header>
         <div class="weather_block">
@@ -51,12 +52,12 @@
         <footer>
             <div class="wrapper">
                 <div class="footer_container">
-                {% if 0 <= weather['weather_code'] <= 4 %}
-                    <p>
-                        Сегодня отличная погода. Советую надеть футболку,
-                        шорты или штаны. Можно обуть кроссовки или кеды.
-                        Также можешь взять кепку или панамку.
-                    </p>
+                    {% if 0 <= weather['weather_code'] <= 4 %}
+                        <p>
+                            Сегодня отличная погода. Советую надеть футболку,
+                            шорты или штаны. Можно обуть кроссовки или кеды.
+                            Также можешь взять кепку или панамку.
+                        </p>
                     {% elif 5 <= weather['weather_code'] <= 12 or 18 <= weather['weather_code'] <= 19 or 30 <= weather['weather_code'] <= 35 or 40 <= weather['weather_code'] <= 49 %}
                         <p>
                             На улице туман или ветер с пылью, не забудь головной убор.
@@ -98,8 +99,6 @@
                             На улице осадки и одевайся теплее!
                         </p>
                     {% endif %}
-            <a href="/settings" class="logout_btn">Настройки</a>
-
                 </div>
             </div>
         </footer>   

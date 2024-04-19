@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/register.css')}}">
+    <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/settings.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -47,8 +47,9 @@
                 {{ form.submit(type="submit") }}
             </p>
             <div>{{ message }}</div>
-            <a href="/" class="logout_btn">На главную</a>
-
+            <p>
+                <a href="/" class="back_to_main_btn">На главную</a>
+            </p>
         </div>
     </div>
     </form>

@@ -21,6 +21,22 @@ header {
 }
 
 
+.settings_btn {
+	text-align: right;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #21273D;
+	text-decoration: none;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	color: #F1F6F8;
+}
+
+
 .logout_btn {
 	text-align: right;
 	padding-top: 10px;
@@ -29,7 +45,7 @@ header {
 	padding-right: 10px;
 	background: #21273D;
 	text-decoration: none;
-	margin-left: 40%;
+	margin-left: 35%;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 10px;
@@ -76,7 +92,7 @@ footer {
 	color: #F1F6F8;
 	margin-left: 215px;
 	margin-right: 215px;
-	font-size: 25px;
+	font-size: 30px;
 }
 
 
